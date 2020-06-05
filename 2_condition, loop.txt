@@ -1,0 +1,142 @@
+1. if Statements
+	if
+	elif
+	else
+   NOTE
+	1. Python doesn't have a switch/case statement
+	2. a < b == c tests whether a is less than b and moreover b equals c
+	3. assignment inside expressions must be done explicitly with the walrus operator :=
+
+2. in/not in Operators 
+	check whether a value occurs (does not occur) in a sequence
+
+3. is/not is Operators 
+	compare whether two objects are really the same object
+		only matters for mutable objects
+
+4. Boolean Operators
+	1. and/or/not
+	2. and and or are so-called short-circuit operators
+		e.g. a, b, c, d = 0, 1, 2, 3
+		     e = a or b or c		# e == 1
+		     f = b and c and d		# f == 3
+
+5. Loop
+
+	1. while statements (like in C)
+
+	2. for statements
+		1. e.g.
+			seq = [1, 2, 3]
+			for e in seq.copy():			# element in seq wouldn't be changed
+				print(e)
+
+		2. range() function
+			e.g.
+				for i in range(5):		# 1 ~ 4
+				for i in range(5, 10):		# 5 ~ 9
+				for i in range(5, 2, 10):	# 5, 7, 9
+
+			e.g.
+				sum(range(3))			# 0 + 1 + 2
+				list(range(3))			# [0, 1, 2]
+	
+	3. break/continue statement (like in C)
+	4. else clause
+		executed when the loop terminates through exhaustion of the iterable (with for) 
+		or when the condition becomes false (with while)
+			e.g.
+				for i in range(5):
+					...
+				else:
+					...
+
+6. pass Statements
+	The pass statement does nothing
+		e.g.
+			while True:
+				pass
+
+7. Functions
+	e.g.
+		def func(n):				# function definition
+			''' optional docstring '''
+			return n			# the function without return return None
+		f = func				# f is a function
+		f = func(1)				# f == 1
+
+	1. default arguments
+		the default value are evaluated at the point of function definition in the defining scope
+			e.g. a = 1
+		     	     def func(n = a):
+				return n
+		     
+		     	     a = 2
+		     	     b = func()			# b == 1
+	2. keyword arguments
+		e.g.
+			def func(i, j = 1, z = 2):
+				...
+
+			# 1 positional, 1 keyword
+			func(0, z = 3)			# keyword arguments must follow positional arguments
+
+			# 2 keyword
+			func(i = 0, z = 3) 	
+	3. * and **
+		**para: receive a dictionary containing all keyword arguments 
+				except for those corresponding to a formal parameter
+		*para :	1. receive a tuple, containing the positional arguments beyond the formal parameter list
+			2. any formal parameters occuring after the *para are keyword-only arguments
+			3. must occur before **para
+
+			e.g.
+				def func(a, *b, **c):
+					for e in b:	# e is an element
+						...
+					for p in c:	# p is pair.first and c[p] is pair.second
+						...
+				
+				# 1 is passed to a
+				# 2 and 3 are passed to b
+				# others are passed to c
+				func(1, 2, 3, x = 4, y = 5)
+
+	4. special parameters
+		/ may separate the positional-only parameters from the rest of the parameters
+ 		* need to be placed in the arguments list just before the first keyword-only parameter
+			e.g.
+				def f(pos1, pos2, /, pos_or_kwd, *, kwd1, kwd2):
+      			      	      -----------    ----------     ----------
+       				   	  |             |                  |
+        			   	  |        Positional or keyword   |
+        			   	  |                                - Keyword only
+         			   	  -- Positional only
+	
+	5. unpacking argument lists
+		*  for list or tuple
+		** for dict
+
+			e.g. 
+				def func(a, b):
+					...
+				
+				lst = [1, 2]
+				func(*lst)			# equivalent to func(1, 2)
+				dic = {'a': 1, 'b': 2}
+				func(**dic)			# equivalent to func(a = 1, b = 2)
+
+	6. lambda expressions
+		they are syntactically restricted to a single expression
+			e.g. lambda a, b: a + b			# returns a + b
+
+	7. function annotations
+		1. parameter annotations are defined by a colon after the parameter name
+		2. return annotations are defined by a literal -> 
+			between the parameter list and the colon denoting the end of the def statement
+		3. annotations are stored in the __annotations__ attribute of the function as a dictionary
+			
+			e.g.
+				def func(a: int, b: int = 2) -> int:
+					# output: {'a': <class 'int'>, 'b': <class 'int'>, 'return': <class 'int'>}
+					print(func.__annotations__ )

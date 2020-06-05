@@ -1,0 +1,94 @@
+
+1. String
+	1. string can be enclosed in single quotes ('...') or double quotes ("...") with the same result
+ 	2. print(r'C:\some\name')  	# output: C:\some\name
+	3. string literals can span multiple lines("""...""" or '''...''')
+		e.g. print("""\		# \ means no \n
+			a
+			b""")
+	4. strings can be concatenated with the + operator, and repeated with *
+		e.g. 'a' + 'b' * 3	# return 'abbb'
+		     'a' 'b' * 3	# return 'ababab'
+
+	5.index(each char is immutable)
+		e.g. str = "abc"
+		     str[0]		# 'a'
+		     str[-1]		# last char 'c'
+		     str[0:1]		# char from position 0 (included) to 1 (excluded), 'ab'
+		     str[:1]		# from the beginning to position 1 (excluded)
+		     str[1:]		# from position 1 (included) to the end
+		     str[-2:]		# characters from the second-last (included) to the end
+		     str[:]		# 'abc'
+		     str[0:100]		# OK, equivalent to str[0:]
+		     str[100:]		# OK, get ''
+	  	note that -0 is the same as 0
+
+	6. built-in function len() returns the length of a string
+
+2.List
+	1. lists might contain items of different types
+		e.g. lst = [1, 2, 'a', 'b']
+		     print(lst)		# output: [1, 2, 'a', 'b']
+	2. index (like string)
+	3. slices assignment
+		e.g. lst[1:3] = []	# lst == [1, 'b'] 
+	4. support +/* (like string)
+	5. built-in function len()
+	6. add new items at the end of the list
+		e.g. lst.append(123)
+	7. list comprehensions
+		a list comprehension consists of brackets containing an expression followed by a for clause, 
+			then zero or more if or for clauses
+				e.g. # [(1, 3), (2, 1), (2, 3)]
+			     	     [(x, y) for x in [1,2] for y in [1,3] if x != y]
+
+4. Tuple
+	1. tuples may be input with or without surrounding parentheses
+	2. tuples are immutable
+	3. support sequence unpacking
+		e.g. t = 1, 2		# equivalent to t = (1, 2)
+		     t = ()		# empty tuple
+		     t = 1, 		# a tuple with one item, equivalent to t = (1, )
+
+		     # t[0] = 3		  error
+		     t = ([1], )
+		     t[0].append(2)	# ([1, 2],)
+
+		     a, b = t		# unpacking
+
+5. Sets
+	1. a set is an unordered collection with no duplicate elements
+	2. curly braces or the set() function can be used to create sets
+	3. to create an empty set you have to use set(), not {}
+	4. set comprehensions
+		e.g. s = {1, 2}
+		     s = set()
+		     {x for x in 'abracadabra' if x not in 'abc'}	# {'r', 'd'}
+7. Dictionaries
+	1. keys must be any immutable type
+	2. keys are unique
+	3. a pair of braces creates an empty dictionary: {}
+	4. list(d) on a dictionary returns a list of all the keys used in the dictionary, in insertion order
+	5. the dict() constructor builds dictionaries directly from sequences of key-value pairs
+	6. dict comprehensions
+		e.g. dic = {'a': 1, 'b': 2}
+		     dic = dict([('a', 1), ('b', 2)])
+
+		     {x: x**2 for x in (2, 4, 6)}		# {2: 4, 4: 16, 6: 36}
+		     
+8. The del statement
+		remove items from a list or dict given its indexes instead of its values
+			e.g. del a[0]
+		     	     del a[:]
+
+9. Looping Techniques
+	1. for dictionaries, the key and corresponding value can be retrieved using the items() method
+		e.g. for k, v in dic.items():			# k is key, v is value
+	2. for sequence, the position index and corresponding value can be retrieved using the enumerate() function
+		e.g. for i, v in enumerate([1, 2]):		# i is index, v is value
+	3. loop over two or more sequences at the same time, the entries can be paired with the zip() function.
+		e.g. for a, b in zip([1, 2], [3, 4]):
+	4. loop over a sequence in reverse, use the reversed()
+		e.g. for e in reversed([1, 2]):
+	5. loop over a sequence in sorted order, use the sorted(), leaving the source unaltered
+		e.g. for e in sorted(set([2, 2, 1, 1]):		

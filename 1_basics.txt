@@ -1,0 +1,36 @@
+
+1. Argument Passing
+	import sys
+		sys.argv[0]		# first string after command "python"
+
+2. Calculation
+	1. division (/) always returns a float
+		e.g. 8 / 5 == 1.6
+	2. // operator do floor division and get an integer result
+		e.g. 8 / 5 == 1
+	3. ** operator is to calculate powers
+		e.g. 5 ** 2 == 25
+	   note that since ** has higher precedence than -, -3**2 will be interpreted as -(3**2)
+
+	4. j or J suffix is used to indicate the imaginary part of complex numbers
+		e.g. 3 + 5j
+
+3. Multiple assignment
+	expressions on the right-hand side are all evaluated first, 
+		but the right-hand side expressions are evaluated from the left to the right.
+			e.g. a, b = b, a + b
+
+4. input() function
+	e.g. x = input('prompt')
+
+5. print() function
+	1. multiple arguments
+		e.g. print(1, 1.0, 'a')			# output: 1 1.0 a(\n)
+	2. the keyword argument end can be used to avoid the newline after the output
+		e.g. print(1, 1.0, 'a', end = ',')	# output: 1 1.0 a,
+	3. supprot C printf style formatting
+	
+NOTE:
+	1. only the variables assigned values can be accessed
+	2. in interactive mode, the last printed expression is assigned to the variable _
+	3. any sequence; anything with a non-zero length is true, empty sequences are false

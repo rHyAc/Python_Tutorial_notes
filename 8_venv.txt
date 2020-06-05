@@ -1,0 +1,22 @@
+
+1. Virtual Environments
+	# create the .venv directory containing a copy of Python
+	python3 -m venv .venv
+	
+	# activate it
+	source .venv/bin/activate
+
+2. pip
+	pip search ...
+	pip install ...
+	pip install ...==x.x.x		# x.x.x means version	
+	pip install --upgrade ...	
+	pip uninstall ...
+	pip show ...
+	pip list 
+	pip freeze			# output installed packages in requirements format (e.g. numpy=x.x.x)
+	
+		e.g.	
+			pip freeze > requirements.txt
+			pip install -r requirements.txt
+	

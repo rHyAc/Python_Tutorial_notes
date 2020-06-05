@@ -1,0 +1,123 @@
+
+1. global, nonlocal Statement
+	1. global statement can be used to rebound particular variables live in the global scope
+	2. global statement can be used to rebound particular variables live in an enclosing scope
+		e.g.
+			def f():
+				def f1():
+				a = 1
+			
+				def f2():
+				nonlocal a
+				a = 2
+
+				def f3():
+				global a
+				a = 3
+			
+				a = 0
+				f1()
+				print(a)		# output: 0
+			
+				f2()
+				print(a)		# output: 2
+
+				f3()
+				print(a)		# output: 2
+
+			# no previous binding for global is OK
+			f()
+			print(a)			# output: 3	
+			
+2. class
+	1. normally class members are public (except Private Variables)
+
+		e.g.
+			def func(self):			
+				...
+
+			class cls:
+				'''a class''' 
+				a = 1			# class variable shared by all instances
+				f1 = func		# function defined outside the class 
+
+				# constructor
+				def __init__(self, i):	# the instance object is passed as the first argument 
+					self.a = i	# instance variable	
+
+				def f2(self):
+					...
+
+			# attribute references		
+			cls.a = 2			# modify class variable
+			cls.__doc__			# return 'a class'
+
+			# class instantiation
+			c = cls(2)
+
+			print(c.a)			# output instance variable, higher priority
+			del(c.a)			# del instance variable
+			print(c.a)			# output class variable
+			c.b = 1				# define instance variable
+
+
+	NOTE
+		1. Each value is an object, and therefore has a class (also called its type). 
+			It is stored as object.__class__.
+		2. convention £ºa name prefixed with an underscore (e.g. _name) 
+			should be treated as a non-public part
+		3. Any identifier with at least two leading underscores and at most one trailing underscore
+			 is textually replaced with _classname__spam, where classname is the current class name
+		4. support operator override
+		5. the statements executed by the top-level invocation of the interpreter, 
+			either read from a script file or interactively, 
+				are considered part of a module called __main__
+
+3. Inheritance
+	e.g. class derived(base):
+	     
+	
+	1. all member functions are virtual
+	2. isinstance() to check an instance¡¯s type
+		e.g. isinstance(obj, int)		# return True only if obj.__class__ is int 
+					   		#	or some class derived from int.
+	3. issubclass() to check class inheritance
+		e.g. issubclass(bool, int) 		# return True since bool is a subclass of int.
+		
+	4. multiple inheritance
+		e.g. 
+			class derived(base1, base2):
+		
+		1. d.__mro__ return the Method Resolution Order of class d
+	
+4. Iterators
+	1. iter(a) return a.__iter__()
+	2. next(a) return a.__next__()
+	3. for statement first calls iter() on object, 
+		and then calls next() until it raises a StopIteration exception means termination
+		e.g.
+			s = 'abc'
+			it = iter(s)				# iterator of s
+			next(it)				# iterator pointing to 'a'
+			next(it)				# iterator pointing to 'b'
+
+		e.g.
+			class cls:
+				def __iter__(self):
+					...
+				def __next__(self):
+					...
+
+5. Generators 
+	they are written like regular functions but use the yield statement whenever they want to return data
+		 __iter__() and __next__() methods are created automatically
+			e.g.
+				def r(data):
+					for i in range(len(data) - 1, -1, -1):
+						yield data[i]
+
+				for e in r('hhh'):
+					...
+
+				# generator expression
+				[i for i in r('abc')]		# return ['c', 'b', 'a']

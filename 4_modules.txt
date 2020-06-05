@@ -1,0 +1,82 @@
+
+1. import 
+	e.g.
+		# f1.py
+		a = 1
+		def func(n):
+			...
+
+		# f2.py
+		import f1
+		f1.a = 2
+		f1.func(1)
+		f1.__name__		# the module¡¯s name ('f1')
+
+		# f3.py
+		# equvalent to from f1 import func, a
+		from f1 import *	# imports all names except those beginning with an underscore (_)
+		a = 1
+		func(1)
+
+		# f4.py
+		import f1 as f
+		f.func(1)
+
+		# f5.py
+		from f1 import func as functn
+		functn(1)
+		
+		
+	NOTE: 
+		1. executable statements are executed only the first time the module name 
+			is encountered in an import statement to initialize the module
+		2. When
+			python f1.py <arguments>
+		   the code in the module will be executed, just as if you imported it, 
+			but with the __name__ set to "__main__"
+		   		e.g. # python f1.py
+				     # at the end of f1.py
+				     if __name__ == "__main__":		# if the module is imported, 
+									#	the code is not run
+		
+		3. module search path is given by sys.path (a list of strings) that can be modified 
+		4. environment variable PYTHONPATH contains module search path
+
+2. dir() Function
+	list all names a module defines
+		e.g. dir(sys)		
+		     dir()		# the names have be defined currently
+
+3. Packages
+	pack/
+	     __init__.py		-- make Python treat directories as packages, can be an empty file
+	     subpack/
+		     __init__.py	-- execute when package (subpack) is imported
+		     f1.py
+
+	e.g.	import pack.f1		# the last item can¡¯t be a class or function or variable
+		pack.f1.func(1)
+
+	e.g.	from pack import f1	
+		f1.func(1)
+
+	e.g.	# __init__.py of pack
+		__all__ = ['subpack']
+
+		# main.py
+		from pack import *	# inport all submodules(subpacks) whose names are in the list
+					#	__all__ of __init__.py
+
+	e.g.	# __init__.py of pack
+		# empty
+		
+		#main.py
+		import pack.f1
+		from pack import *	# if __all__ is not defined,  it only ensures the package pack 
+		f1.func(1)		#	has been imported and includes submodules 
+					#		loaded by previous import statements
+
+	NOTE: 1. __path__ is initialized to be a list containing the name of the directory 
+			holding the package¡¯s __init__.py before the code in that file is executed,
+	      2. modify __path__ can affects future searches for modules and subpackages 
+			contained in the package

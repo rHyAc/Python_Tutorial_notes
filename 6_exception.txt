@@ -1,0 +1,62 @@
+
+1. try Clause 
+	1. the try clause is executed
+	2. if no exception occurs, the except clause is skipped and execution of the try statement is finished
+	3. if an exception occurs during execution of the try clause, the rest of the clause is skipped
+		1. Then if its type matches the exception named after the except keyword, 
+			the except clause is executed
+		2. else it is passed on to outer try statements; if no handler is found, 
+			it is an unhandled exception and execution stops with a message
+	4. an optional else clause following all except clauses is useful for code that 
+		must be executed if the try clause does not raise an exception
+
+	e.g.
+		try:
+			...
+		except RuntimeError
+			...
+		except (TypeError, NameError):
+			...
+		except Exception as e:			# variable e bound to an exception instance 
+							#	with the arguments stored in e.args
+
+			print(type(e))			# output : <class 'Exception'>
+			print(e)			# equvalent to print(e.args), 
+							#	since __str__() is defined in e
+
+		except:					# catch all exceptions
+			...
+		else:
+			...
+
+	NOTE 
+		1. a class in an except clause is compatible with an exception if it is the same class 
+			or a base class 
+
+2. finally Clause
+	1. optional clause after except or else clause
+	2. it runs whether or not the try statement produces an exception
+	3. if the exception is not handled by an except clause, 
+		the exception is re-raised after the finally clause has been executed
+	4. if the exception could occur during execution of an except or else clause,
+		the exception is re-raised after the finally clause has been executed
+	5. if the try statement reaches a break, continue or return statement, 
+		it will execute prior to the break, continue or return statement¡¯s execution
+	6. if a finally clause includes a return statement, 
+			the returned value will be the one from the finally clause¡¯s return statement, 
+				not the value from the try clause¡¯s return statement
+
+3.  raise Statement 
+	to force a specified exception to occur
+		e.g. raise NameError('err_mesg')	# an exception instance
+		     raise NameError			# an exception class, 
+							# 	implicitly call its constructor with no arguments
+
+		e.g. 
+			try:
+				raise NameError
+			expect NameError:
+				raise			# re-raise the exception
+
+4. User-defined Exceptions
+	Exceptions should typically be derived from the Exception class

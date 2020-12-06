@@ -58,6 +58,9 @@
 		import pack.subpack.f1		# the last item can’t be a class or function or variable
 		pack.f1.func(1)
 
+	e.g.
+		import pack.subpack
+		#pack.subpack.f1.func(1)	# error. 'pack.subpack' is a pack, having no '.attribute'
 	e.g.	
 		from pack.subpack import f1	
 		f1.func(1)

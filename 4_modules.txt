@@ -10,7 +10,7 @@
 		import f1
 		f1.a = 2
 		f1.func(1)
-		f1.__name__		# the module¡¯s name ('f1')
+		f1.__name__		# the moduleâ€™s name ('f1')
 
 		# f3.py
 		# equvalent to from f1 import func, a
@@ -54,20 +54,24 @@
 		     __init__.py	-- execute when package (subpack) is imported
 		     f1.py
 
-	e.g.	import pack.f1		# the last item can¡¯t be a class or function or variable
+	e.g.	
+		import pack.subpack.f1		# the last item canâ€™t be a class or function or variable
 		pack.f1.func(1)
 
-	e.g.	from pack import f1	
+	e.g.	
+		from pack.subpack import f1	
 		f1.func(1)
 
-	e.g.	# __init__.py of pack
+	e.g.	
+		# __init__.py of pack
 		__all__ = ['subpack']
 
 		# main.py
 		from pack import *	# inport all submodules(subpacks) whose names are in the list
 					#	__all__ of __init__.py
 
-	e.g.	# __init__.py of pack
+	e.g.	
+		# __init__.py of pack
 		# empty
 		
 		#main.py
@@ -77,6 +81,6 @@
 					#		loaded by previous import statements
 
 	NOTE: 1. __path__ is initialized to be a list containing the name of the directory 
-			holding the package¡¯s __init__.py before the code in that file is executed,
+			holding the packageÂ¡Â¯s __init__.py before the code in that file is executed,
 	      2. modify __path__ can affects future searches for modules and subpackages 
 			contained in the package

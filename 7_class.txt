@@ -64,7 +64,7 @@
 	NOTE
 		1. Each value is an object, and therefore has a class (also called its type). 
 			It is stored as object.__class__.
-		2. convention £ºa name prefixed with an underscore (e.g. _name) 
+		2. convention Â£Âºa name prefixed with an underscore (e.g. _name) 
 			should be treated as a non-public part
 		3. Any identifier with at least two leading underscores and at most one trailing underscore
 			 is textually replaced with _classname__spam, where classname is the current class name
@@ -78,7 +78,7 @@
 	     
 	
 	1. all member functions are virtual
-	2. isinstance() to check an instance¡¯s type
+	2. isinstance() to check an instance's type
 		e.g. isinstance(obj, int)		# return True only if obj.__class__ is int 
 					   		#	or some class derived from int.
 	3. issubclass() to check class inheritance

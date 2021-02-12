@@ -50,6 +50,7 @@
 3. Packages
 	pack/
 	     __init__.py		-- make Python treat directories as packages, can be an empty file
+	     					become a native namespace package if omit
 	     subpack/
 		     __init__.py	-- execute when package (subpack) is imported
 		     f1.py

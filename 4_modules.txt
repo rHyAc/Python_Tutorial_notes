@@ -83,6 +83,19 @@
 		from pack import *	# if __all__ is not defined,  it only ensures the package pack 
 		#f1.func(1)		#	has been imported and includes submodules 
 					#		loaded by previous import statements
+					
+	e.g.
+		# __init__.py of pack
+		from .subpack import f1
+		
+		# main.py
+		import pack		
+		pack.f1.func()
+		
+		#or
+		from pack import f1
+		f1.func()
+		
 
 	NOTE: 1. __path__ is initialized to be a list containing the name of the directory 
 			holding the package¡¯s __init__.py before the code in that file is executed,

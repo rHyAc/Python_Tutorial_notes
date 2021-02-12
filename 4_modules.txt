@@ -56,7 +56,7 @@
 
 	e.g.	
 		import pack.subpack.f1		# the last item can’t be a class or function or variable
-		pack.f1.func(1)
+		pack.subpack.f1.func(1)
 
 	e.g.
 		import pack.subpack
@@ -80,7 +80,7 @@
 		#main.py
 		import pack.f1
 		from pack import *	# if __all__ is not defined,  it only ensures the package pack 
-		f1.func(1)		#	has been imported and includes submodules 
+		#f1.func(1)		#	has been imported and includes submodules 
 					#		loaded by previous import statements
 
 	NOTE: 1. __path__ is initialized to be a list containing the name of the directory 
